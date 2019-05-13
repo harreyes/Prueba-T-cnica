@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Usuarios</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        {{infoUsuariosContador}}
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-searchbar [(ngModel)]="textoSearchBar" (ionInput)="getUsuariosQuery($event)" placeholder="Buscar">
+  </ion-searchbar>
+
+  <ion-list *ngFor="let item of infoUsuarios" class="usuarios">
+    <ion-item>
+      <div>
+        <p style="color:black">Usuario: {{item.firstname}} {{item.lastname}}</p>
+        <p style="color:black">Identificación: {{item.identification}}</p>
+        <p style="color:black">Fecha de cumpleaños: {{item.firstname}}</p>
+      </div>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Solicitar crédito</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <form (ngSubmit)="goAprobacion()" [formGroup]="formauth" novalidate>
+
+    <ion-list>
+
+      <ion-item style="background-color: transparent;">
+        <ion-label style=" color:black ;" floating>Nombre de la empresa donde trabaja</ion-label>
+        <ion-input type="text" formControlName="nombreEmpresa" [(ngModel)]="nombreEmpresa"></ion-input>
+      </ion-item>
+      <ion-item style="background-color: transparent;"
+        *ngIf="formauth.get('nombreEmpresa').dirty && !formauth.get('nombreEmpresa').valid">
+        <p style=" color:red;" *ngIf="formauth.get('nombreEmpresa').hasError('required')">campo requerido</p>
+      </ion-item>
+
+      <ion-item style="background-color: transparent;">
+        <ion-label style=" color:black ;" floating>Nit de la empresa</ion-label>
+        <ion-input type="number" formControlName="nitEmpresa" [(ngModel)]="nitEmpresa"></ion-input>
+      </ion-item>
+      <ion-item style="background-color: transparent;"
+        *ngIf="formauth.get('nitEmpresa').dirty && !formauth.get('nitEmpresa').valid">
+        <p style=" color:red;" *ngIf="formauth.get('nitEmpresa').hasError('required')">campo requerido</p>
+      </ion-item>
+
+      <ion-item style="background-color: transparent;">
+        <ion-label style=" color:black ;" floating>Salario actual</ion-label>
+        <ion-input type="number" formControlName="salario" [(ngModel)]="salario"></ion-input>
+      </ion-item>
+      <ion-item style="background-color: transparent;"
+        *ngIf="formauth.get('salario').dirty && !formauth.get('salario').valid">
+        <p style=" color:red;" *ngIf="formauth.get('salario').hasError('required')">campo requerido</p>
+        <p style=" color:red;" *ngIf="formauth.get('salario').hasError('max')">El salario debe ser menor a $100.000.000
+        </p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Fecha ingreso</ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" min="1950-01-01" max="{{fechaMenosUnDia}}" [(ngModel)]="fechaIngreso"
+          formControlName="fechaIngreso" (ionChange)="comprobarAntiguedad($event)" cancelText="CANCELAR" doneText="OK">
+        </ion-datetime>
+      </ion-item>
+
+      <br>
+
+      <button ion-button color="secondary" block class="custom-button" [disabled]="!formauth.valid">
+        <b>SOLICITAR</b>
+      </button>
+
+    </ion-list>
+
+  </form>
+
+</ion-content>

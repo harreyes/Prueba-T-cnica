@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Registro</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+
+  <form (ngSubmit)="goRegistro()" [formGroup]="formauth" novalidate>
+    <ion-list>
+
+      <ion-item>
+        <ion-icon name="person" item-left style="color:black; margin:0; top: 50%; left: 50%; padding-right:5px ">
+        </ion-icon>
+        <ion-input type="text" placeholder="Nombre" formControlName="nombre" [(ngModel)]="nombre"></ion-input>
+      </ion-item>
+      <ion-item style="background-color: transparent;"
+        *ngIf="formauth.get('nombre').dirty && !formauth.get('nombre').valid">
+        <p style=" color:red;" *ngIf="formauth.get('nombre').hasError('required')">Campo requerido</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="person" item-left style=" color:black;margin:0; top: 50%; left: 50%; padding-right:5px ">
+        </ion-icon>
+        <ion-input type="text" placeholder="Apellido" formControlName="apellido" [(ngModel)]="apellido"></ion-input>
+      </ion-item>
+      <ion-item style="background-color: transparent;"
+        *ngIf="formauth.get('apellido').dirty && !formauth.get('apellido').valid">
+        <p style=" color:red;" *ngIf="formauth.get('apellido').hasError('required')">Campo requerido</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="card" item-left style="color:#1e1e1f;margin:0; top: 50%; left: 50%; padding-right:5px ">
+        </ion-icon>
+        <ion-input type="number" placeholder="Identificación" formControlName="identificacion"
+          [(ngModel)]="identificacion"></ion-input>
+      </ion-item>
+      <ion-item style="background-color: transparent;"
+        *ngIf="formauth.get('identificacion').dirty && !formauth.get('identificacion').valid">
+        <p style=" color:red;" *ngIf="formauth.get('identificacion').hasError('required')">Campo requerido</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Fecha nacimiento</ion-label>
+        <ion-icon name="calendar" item-left style="color:#121213; margin:0; top: 50%; left: 50%; padding-right:5px ">
+        </ion-icon>
+        <ion-datetime displayFormat="DD/MM/YYYY" min="1910-01-01" max="{{fecha}}" [(ngModel)]="fechaNacimiento"
+          (ionChange)="comprobarEdad($event)" formControlName="fechaNacimiento" cancelText="CANCELAR" doneText="OK">
+        </ion-datetime>
+      </ion-item>
+
+      <br>
+
+      <button ion-button color="secondary" block class="custom-button" [disabled]="!formauth.valid">
+        <b>REGISTRAR</b>
+      </button>
+
+    </ion-list>
+
+  </form>
+
+  <button ion-button color="light" block (click)="cancel()" class="custom-button">
+    <b>CANCELAR</b>
+  </button>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar class="footer">
+    <div>
+      <span>Recuerde que debe ser mayor de edad para poder registrarse.</span>
+    </div>
+  </ion-toolbar>
+</ion-footer>

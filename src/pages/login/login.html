@@ -1,0 +1,34 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content class="fondo " padding>
+  <form (ngSubmit)="goIngreso()" [formGroup]="formauth" novalidate>
+    <ion-list>
+
+      <ion-item style="background-color: transparent;">
+        <ion-label style=" color:white ;" floating>Identificación</ion-label>
+        <ion-input type="number" formControlName="identificacion" [(ngModel)]="identificacion"></ion-input>
+      </ion-item>
+      <ion-item style="background-color: transparent;"
+        *ngIf="formauth.get('identificacion').dirty && !formauth.get('identificacion').valid">
+        <p style=" color:red;" *ngIf="formauth.get('identificacion').hasError('required')">campo requerido</p>
+      </ion-item>
+
+    </ion-list>
+
+    <div padding>
+      <button ion-button class="card-title" color="danger" block [disabled]="!formauth.valid">Iniciar</button>
+    </div>
+
+  </form>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar class="footer">
+    <div (click)="goRegistro()">
+      <span>¿No tienes una cuenta? Registrarte</span>
+    </div>
+  </ion-toolbar>
+</ion-footer>

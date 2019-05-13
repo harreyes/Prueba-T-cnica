@@ -1,0 +1,13 @@
+page-usuarios {
+  .usuarios {
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom right;
+    border-left: 7px solid #000fff;
+    -webkit-box-shadow: 4px 9px 15px -5px rgba(8, 8, 8, 1);
+    -moz-box-shadow: 4px 9px 15px -5px rgba(8, 8, 8, 1);
+    box-shadow: 4px 9px 15px -5px rgba(8, 8, 8, 1);
+    overflow-y: auto;
+  }
+}
